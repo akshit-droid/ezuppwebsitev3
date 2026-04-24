@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { solutions, type Solution } from "@/data/solutions";
@@ -7,15 +8,8 @@ function SolutionCard({ s, index }: { s: Solution; index: number }) {
   const delay = `d${(index % 3) + 1}` as const;
   const accentColor = s.accent === "blue" ? "#2B4EFF" : "#2ED8A0";
 
-  return (
-    <div
-      className={cn(
-        "group relative rounded-2xl border border-transparent p-6 transition-all duration-300",
-        "hover:-translate-y-1 hover:border-black/5 hover:bg-white hover:shadow-card-hover",
-        "reveal",
-        delay,
-      )}
-    >
+  const cardInner = (
+    <>
       {/* accent bar */}
       <div
         aria-hidden
@@ -23,7 +17,7 @@ function SolutionCard({ s, index }: { s: Solution; index: number }) {
         style={{ background: accentColor }}
       />
 
-      <div className="flex flex-col gap-4">
+      <div className="flex h-full flex-col gap-4">
         <div className="relative flex h-16 w-16 items-center justify-center">
           <div
             className="absolute inset-0 rounded-2xl opacity-10 transition group-hover:opacity-20"
@@ -42,20 +36,50 @@ function SolutionCard({ s, index }: { s: Solution; index: number }) {
 
         <p className="text-[14px] leading-[1.7] text-brand-gray">{s.desc}</p>
 
-        <div className="mt-2 inline-flex items-center gap-1.5 text-[12px] font-bold text-brand-blue opacity-0 transition-all group-hover:opacity-100">
-          Learn more
+        <div className="mt-auto inline-flex items-center gap-1.5 pt-2 text-[12px] font-bold text-brand-blue opacity-70 transition-all group-hover:translate-x-0.5 group-hover:opacity-100">
+          {s.external ? "Visit Skytech" : "Learn more"}
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path
-              d="M2 6h7m0 0L6 3m3 3L6 9"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+            {s.external ? (
+              <path
+                d="M4 2h6v6M10 2L4 8M4 10H2V4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            ) : (
+              <path
+                d="M2 6h7m0 0L6 3m3 3L6 9"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            )}
           </svg>
         </div>
       </div>
-    </div>
+    </>
+  );
+
+  const classes = cn(
+    "group relative block rounded-2xl border border-transparent bg-white/50 p-6 transition-all duration-300",
+    "hover:-translate-y-1 hover:border-black/5 hover:bg-white hover:shadow-card-hover",
+    "reveal",
+    delay,
+  );
+
+  if (s.external) {
+    return (
+      <a href={s.href} target="_blank" rel="noopener noreferrer" className={classes}>
+        {cardInner}
+      </a>
+    );
+  }
+  return (
+    <Link href={s.href} className={classes}>
+      {cardInner}
+    </Link>
   );
 }
 

@@ -1,20 +1,20 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { navLinks } from "@/data/nav";
 import { Button } from "@/components/ui/Button";
 import { ArrowRightIcon } from "@/components/icons/SolutionIcons";
 import { cn } from "@/lib/cn";
 
-function scrollToId(id: string) {
-  const el = document.getElementById(id);
-  if (el) window.scrollTo({ top: el.offsetTop - 72, behavior: "smooth" });
-}
-
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 30);
@@ -22,6 +22,26 @@ export function Navbar() {
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
+
+  function goToSection(id: string) {
+    setOpen(false);
+    if (isHome) {
+      const el = document.getElementById(id);
+      if (el) window.scrollTo({ top: el.offsetTop - 72, behavior: "smooth" });
+    } else {
+      // Navigate home, then smoothly scroll after the page mounts.
+      router.push("/");
+      const tryScroll = (attempt = 0) => {
+        const el = document.getElementById(id);
+        if (el) {
+          window.scrollTo({ top: el.offsetTop - 72, behavior: "smooth" });
+        } else if (attempt < 20) {
+          setTimeout(() => tryScroll(attempt + 1), 60);
+        }
+      };
+      setTimeout(tryScroll, 80);
+    }
+  }
 
   return (
     <nav
@@ -32,14 +52,7 @@ export function Navbar() {
         scrolled && "shadow-[0_2px_24px_rgba(0,0,0,.06)]",
       )}
     >
-      <a
-        href="#hero"
-        onClick={(e) => {
-          e.preventDefault();
-          scrollToId("hero");
-        }}
-        className="flex items-center gap-2"
-      >
+      <Link href="/" className="flex items-center gap-2">
         <Image
           src="/assets/logo.png"
           alt="Ezupp"
@@ -48,16 +61,16 @@ export function Navbar() {
           priority
           className="h-[34px] w-auto"
         />
-      </a>
+      </Link>
 
       <ul className="hidden items-center gap-10 md:flex">
         {navLinks.map((l) => (
           <li key={l.id}>
             <a
-              href={`#${l.id}`}
+              href={`/#${l.id}`}
               onClick={(e) => {
                 e.preventDefault();
-                scrollToId(l.id);
+                goToSection(l.id);
               }}
               className="text-[14px] font-semibold text-brand-navy/55 transition hover:text-brand-navy"
             >
@@ -68,10 +81,10 @@ export function Navbar() {
       </ul>
 
       <div className="hidden items-center gap-3 md:flex">
-        <Button variant="outline" onClick={() => scrollToId("contact")}>
+        <Button variant="outline" onClick={() => goToSection("contact")}>
           Contact Us
         </Button>
-        <Button onClick={() => scrollToId("contact")}>
+        <Button onClick={() => goToSection("contact")}>
           Book Demo
           <ArrowRightIcon />
         </Button>
@@ -98,11 +111,10 @@ export function Navbar() {
             {navLinks.map((l) => (
               <li key={l.id}>
                 <a
-                  href={`#${l.id}`}
+                  href={`/#${l.id}`}
                   onClick={(e) => {
                     e.preventDefault();
-                    setOpen(false);
-                    scrollToId(l.id);
+                    goToSection(l.id);
                   }}
                   className="block py-3 text-[15px] font-semibold text-brand-navy"
                 >
@@ -113,10 +125,7 @@ export function Navbar() {
             <li className="mt-4">
               <Button
                 className="w-full"
-                onClick={() => {
-                  setOpen(false);
-                  scrollToId("contact");
-                }}
+                onClick={() => goToSection("contact")}
               >
                 Book Demo
                 <ArrowRightIcon />

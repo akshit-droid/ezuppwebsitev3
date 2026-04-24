@@ -11,9 +11,6 @@ export function useReveal(): void {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const els = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
-    if (els.length === 0) return;
-
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -26,7 +23,22 @@ export function useReveal(): void {
       { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
     );
 
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    const observeAll = () => {
+      document
+        .querySelectorAll<HTMLElement>(".reveal:not(.visible)")
+        .forEach((el) => io.observe(el));
+    };
+
+    // initial pass
+    observeAll();
+
+    // re-observe any nodes that mount later (e.g. after conditional rendering)
+    const mo = new MutationObserver(observeAll);
+    mo.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      io.disconnect();
+      mo.disconnect();
+    };
   }, []);
 }

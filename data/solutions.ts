@@ -20,6 +20,10 @@ export interface Solution {
   desc: string;
   accent: SolutionAccent;
   Icon: ComponentType<SVGProps<SVGSVGElement> & { size?: number }>;
+  /** Internal route (e.g. /solutions/crm) or external URL (e.g. https://www.skytechhr.com/). */
+  href: string;
+  /** If true, the link opens in a new tab. */
+  external?: boolean;
 }
 
 export const solutions: Solution[] = [
@@ -30,6 +34,7 @@ export const solutions: Solution[] = [
     desc: "Real-time tracking, route optimization, and performance dashboards for your entire field sales force.",
     accent: "blue",
     Icon: FleetIcon,
+    href: "/solutions/fleet",
   },
   {
     id: "distributor",
@@ -38,6 +43,7 @@ export const solutions: Solution[] = [
     desc: "Full visibility across your distributor network — orders, inventory, settlements, and secondary sales.",
     accent: "teal",
     Icon: DistributorIcon,
+    href: "/solutions/distributor",
   },
   {
     id: "supply",
@@ -46,53 +52,61 @@ export const solutions: Solution[] = [
     desc: "Streamline procurement, warehousing, and last-mile delivery with intelligent workflow automation.",
     accent: "blue",
     Icon: SupplyIcon,
+    href: "/solutions/supply",
   },
   {
     id: "loyalty",
     name: "Loyalty Management",
     tag: "Retention",
-    desc: "Drive retention through smart reward programs, tiered incentives, and personalized campaigns.",
+    desc: "QR warranty activation plus tiered rewards across primary, secondary and tertiary sales — all in one program.",
     accent: "teal",
     Icon: LoyaltyIcon,
+    href: "/solutions/loyalty",
   },
   {
     id: "ai",
     name: "AI Powered Ecosystem",
     tag: "Intelligence",
-    desc: "Machine learning insights, predictive analytics, and process automation across every module.",
+    desc: "Lead qualification, call analysis, intelligent routing, and route-optimised appointments — layered across ERP and CRM.",
     accent: "blue",
     Icon: AIIcon,
+    href: "/solutions/ai",
   },
   {
     id: "hrms",
     name: "Integrated HRMS (Skytech)",
     tag: "HR & Payroll",
-    desc: "Complete HR lifecycle — recruitment, payroll, attendance, appraisals, and statutory compliance.",
+    desc: "Complete HR lifecycle — recruitment, payroll, attendance, appraisals, and statutory compliance. Powered by Skytech.",
     accent: "blue",
     Icon: HRMSIcon,
+    href: "https://www.skytechhr.com/",
+    external: true,
   },
   {
     id: "crm",
     name: "Smart CRM",
     tag: "CRM",
-    desc: "Manage leads, pipelines, and every customer touchpoint with a CRM that learns your sales process.",
+    desc: "Pipeline, qualification, appointments, agent & customer apps, route planning, event sequences, and email.",
     accent: "teal",
     Icon: CRMIcon,
+    href: "/solutions/crm",
   },
   {
     id: "health",
     name: "Healthcare Edition",
     tag: "Healthcare",
-    desc: "Purpose-built for clinics, hospitals, and pharmacy chains — appointments, EMR, billing, and inventory.",
+    desc: "CRM and WhatsApp booking flows designed for doctors, nurses, clinics, and hospital chains.",
     accent: "blue",
     Icon: HealthIcon,
+    href: "/solutions/healthcare",
   },
   {
     id: "whatsapp",
     name: "WhatsApp Solution",
     tag: "Messaging",
-    desc: "Automate order updates, support tickets, marketing campaigns, and lead nurturing via WhatsApp.",
+    desc: "Chatbots, support, sales, marketing, order tracking, and feedback — in one WhatsApp workspace.",
     accent: "teal",
     Icon: WhatsAppIcon,
+    href: "/solutions/whatsapp",
   },
 ];

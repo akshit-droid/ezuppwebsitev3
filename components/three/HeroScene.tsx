@@ -23,7 +23,7 @@ const NODES: NodeData[] = [
   { label: "AI", emoji: "🤖", color: "#2ED8A0" },
 ];
 
-const ORBIT_RADIUS = 3.1;
+const ORBIT_RADIUS = 2.75;
 const ORBIT_TILT = 0.32; // radians — slight axial tilt like a planet
 
 /* ----------------------------------------------------------------------- *
@@ -200,7 +200,7 @@ function SecondaryRing() {
   });
   return (
     <mesh ref={ref} rotation={[Math.PI / 2.2, Math.PI / 3, 0]}>
-      <ringGeometry args={[3.55, 3.57, 128]} />
+      <ringGeometry args={[3.15, 3.17, 128]} />
       <meshBasicMaterial
         color="#2ED8A0"
         transparent
@@ -239,9 +239,12 @@ function SceneContents() {
         opacity={0.55}
       />
 
-      <Globe />
-      <SecondaryRing />
-      <OrbitSystem />
+      {/* Lift the whole system up and nudge right — clears bottom-left for Ezzy */}
+      <group position={[0.35, 0.55, 0]}>
+        <Globe />
+        <SecondaryRing />
+        <OrbitSystem />
+      </group>
     </>
   );
 }

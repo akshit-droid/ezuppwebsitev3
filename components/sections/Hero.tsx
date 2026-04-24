@@ -5,6 +5,7 @@ import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { Container } from "@/components/ui/Container";
 import { ArrowRightIcon, SparkleIcon } from "@/components/icons/SolutionIcons";
 import HeroSceneDynamic from "@/components/three/HeroSceneDynamic";
+import { EzuppMascot } from "@/components/mascot/EzuppMascot";
 
 function scrollToId(id: string) {
   const el = document.getElementById(id);
@@ -94,8 +95,8 @@ export function Hero() {
           </div>
         </div>
 
-        {/* RIGHT — 3D globe scene */}
-        <div className="reveal d2 relative h-[360px] w-full sm:h-[440px] md:h-[540px]">
+        {/* RIGHT — 3D globe scene with mascot */}
+        <div className="reveal d2 relative h-[380px] w-full sm:h-[460px] md:h-[560px]">
           {/* glowing platform disc behind canvas */}
           <div className="pointer-events-none absolute inset-x-0 bottom-4 mx-auto h-32 w-[70%] rounded-full bg-gradient-brand opacity-10 blur-3xl" />
 
@@ -103,8 +104,23 @@ export function Hero() {
             <HeroSceneDynamic />
           </div>
 
-          {/* small live-stats chip bottom-right, out of the globe's way */}
-          <div className="pointer-events-none absolute bottom-3 right-3 hidden items-center gap-2.5 rounded-full bg-white/85 px-3 py-2 shadow-card backdrop-blur md:inline-flex">
+          {/* Ezzy mascot — bottom-left, with a single-line speech bubble beside his head */}
+          <div className="pointer-events-none absolute bottom-0 left-0 z-10 flex items-end gap-3">
+            <EzuppMascot
+              pose="wave"
+              size={128}
+              className="drop-shadow-[0_14px_28px_rgba(43,78,255,0.25)]"
+            />
+            <div className="mb-12 hidden whitespace-nowrap rounded-2xl bg-white px-3.5 py-2 text-[12px] font-extrabold tracking-tight text-brand-navy shadow-card sm:block">
+              <span aria-hidden className="mr-1.5 inline-block animate-wave origin-[70%_80%]">
+                👋
+              </span>
+              Hi, I&apos;m Ezzy
+            </div>
+          </div>
+
+          {/* small live-stats chip top-right, out of globe + mascot's way */}
+          <div className="pointer-events-none absolute right-2 top-3 hidden items-center gap-2.5 rounded-full bg-white/85 px-3 py-2 shadow-card backdrop-blur md:inline-flex">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-pulse-soft rounded-full bg-brand-teal opacity-70" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-teal" />

@@ -1,23 +1,48 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+
+interface FooterLink {
+  label: string;
+  href: string;
+  external?: boolean;
+}
 
 interface FooterGroup {
   title: string;
-  links: string[];
+  links: FooterLink[];
 }
 
 const groups: FooterGroup[] = [
   {
     title: "Solutions",
-    links: ["Sales Fleet", "Distributor Mgmt", "Supply Chain", "Loyalty Mgmt", "AI Ecosystem"],
+    links: [
+      { label: "Sales Fleet", href: "/solutions/fleet" },
+      { label: "Distributor Mgmt", href: "/solutions/distributor" },
+      { label: "Supply Chain", href: "/solutions/supply" },
+      { label: "Loyalty Mgmt", href: "/solutions/loyalty" },
+      { label: "AI Ecosystem", href: "/solutions/ai" },
+    ],
   },
   {
     title: "Platform",
-    links: ["Smart CRM", "HRMS (Skytech)", "Healthcare Edition", "WhatsApp Solution", "Integrations"],
+    links: [
+      { label: "Smart CRM", href: "/solutions/crm" },
+      { label: "HRMS (Skytech)", href: "https://www.skytechhr.com/", external: true },
+      { label: "Healthcare Edition", href: "/solutions/healthcare" },
+      { label: "WhatsApp Solution", href: "/solutions/whatsapp" },
+      { label: "Integrations", href: "/#integrations" },
+    ],
   },
   {
     title: "Company",
-    links: ["About Us", "Contact Us", "Book Demo", "Privacy Policy", "Terms of Service"],
+    links: [
+      { label: "About Us", href: "/#about" },
+      { label: "Contact Us", href: "/#contact" },
+      { label: "Book Demo", href: "/#contact" },
+      { label: "Privacy Policy", href: "#" },
+      { label: "Terms of Service", href: "#" },
+    ],
   },
 ];
 
@@ -30,13 +55,15 @@ export function Footer() {
       <Container className="relative">
         <div className="grid gap-12 md:grid-cols-[2fr_1fr_1fr_1fr]">
           <div>
-            <Image
-              src="/assets/logo.png"
-              alt="Ezupp"
-              width={132}
-              height={30}
-              className="h-[30px] w-auto opacity-90 [filter:brightness(0)_invert(1)]"
-            />
+            <Link href="/" className="inline-block">
+              <Image
+                src="/assets/logo.png"
+                alt="Ezupp"
+                width={132}
+                height={30}
+                className="h-[30px] w-auto opacity-90 [filter:brightness(0)_invert(1)]"
+              />
+            </Link>
             <p className="mt-5 max-w-[260px] text-[13px] leading-[1.7] text-white/35">
               One-stop ERP, CRM, On-Demand, and WhatsApp Automation platform
               by Electrovese Solutions.
@@ -63,13 +90,24 @@ export function Footer() {
               </h5>
               <ul className="space-y-3">
                 {g.links.map((l) => (
-                  <li key={l}>
-                    <a
-                      href="#"
-                      className="text-[13px] font-medium text-white/45 transition hover:text-brand-teal"
-                    >
-                      {l}
-                    </a>
+                  <li key={l.label}>
+                    {l.external ? (
+                      <a
+                        href={l.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[13px] font-medium text-white/45 transition hover:text-brand-teal"
+                      >
+                        {l.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={l.href}
+                        className="text-[13px] font-medium text-white/45 transition hover:text-brand-teal"
+                      >
+                        {l.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
