@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
     "WhatsApp Automation",
     "Enterprise Platform",
     "Distributor Management",
-    "Healthcare ERP",
+    "Digital Warranty Activation",
   ],
   icons: {
     icon: "/assets/favicon.png",
@@ -36,11 +37,19 @@ export const metadata: Metadata = {
     description:
       "ERP, CRM, On-Demand, and WhatsApp Automation — unified. Built for enterprises that can't afford silos.",
     type: "website",
-    images: ["/assets/logo.png"],
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Ezupp — One Platform. Every Business Need.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Ezupp — One Platform. Every Business Need.",
+    images: ["/assets/og-image.png"],
   },
 };
 
@@ -57,6 +66,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={jakarta.variable}>
+      <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-ZJXF46NEW0"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-ZJXF46NEW0');
+          `}
+        </Script>
+      </head>
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

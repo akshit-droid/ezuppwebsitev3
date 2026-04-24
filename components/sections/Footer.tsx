@@ -29,7 +29,7 @@ const groups: FooterGroup[] = [
     links: [
       { label: "Smart CRM", href: "/solutions/crm" },
       { label: "HRMS (Skytech)", href: "https://www.skytechhr.com/", external: true },
-      { label: "Healthcare Edition", href: "/solutions/healthcare" },
+      { label: "Digital Warranty", href: "/solutions/warranty" },
       { label: "WhatsApp Solution", href: "/solutions/whatsapp" },
       { label: "Integrations", href: "/#integrations" },
     ],

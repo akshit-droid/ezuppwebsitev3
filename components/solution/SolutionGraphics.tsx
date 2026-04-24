@@ -287,75 +287,60 @@ export function CRMGraphic(props: Props) {
 }
 
 /* -------- HEALTHCARE: calendar + WhatsApp booking chat -------- */
-export function HealthcareGraphic(props: Props) {
+/* -------- WARRANTY: QR activation + digital certificate -------- */
+export function WarrantyGraphic(props: Props) {
   return (
     <CardShell {...props}>
-      {/* WhatsApp mock */}
+      {/* Mobile activation flow */}
       <g transform="translate(68 72)">
         <rect width="200" height="296" rx="20" fill="#fff" stroke="#E3E8F7" />
-        <rect width="200" height="46" rx="20" fill="#22B085" />
-        <rect y="24" width="200" height="22" fill="#22B085" />
-        <circle cx="26" cy="23" r="12" fill="#fff" />
-        <text x="26" y="27" textAnchor="middle" fontSize="14" fill="#22B085" fontWeight="800" fontFamily="system-ui">+</text>
-        <text x="46" y="21" fontSize="11" fill="#fff" fontWeight="800" fontFamily="system-ui">Dr. Mehra Clinic</text>
-        <text x="46" y="34" fontSize="9" fill="#ffffffaa" fontFamily="system-ui">Online · replies instantly</text>
+        <rect width="200" height="46" rx="20" fill="#2B4EFF" />
+        <rect y="24" width="200" height="22" fill="#2B4EFF" />
+        <circle cx="100" cy="23" r="12" fill="#fff" fillOpacity="0.2" />
+        <text x="100" y="27" textAnchor="middle" fontSize="10" fill="#fff" fontWeight="800" fontFamily="system-ui">Product Activation</text>
 
-        <g transform="translate(12 58)">
-          <rect width="140" height="32" rx="10" fill="#F0F3FC" />
-          <text x="10" y="14" fontSize="9" fill="#080F2E" fontFamily="system-ui">Hi! I need a consult</text>
-          <text x="10" y="26" fontSize="9" fill="#080F2E" fontFamily="system-ui">for tomorrow morning.</text>
+        <g transform="translate(20 68)">
+          <text x="0" y="0" fontSize="11" fill="#080F2E" fontWeight="800" fontFamily="system-ui">Scan QR Code</text>
+          <rect y="12" width="160" height="120" rx="12" fill="#F8FAFF" stroke="#E3E8F7" />
+          {/* QR Pattern */}
+          <g transform="translate(56 48)">
+             <rect width="48" height="48" fill="#080F2E" fillOpacity="0.1" />
+             <rect x="4" y="4" width="12" height="12" fill="#2B4EFF" />
+             <rect x="32" y="4" width="12" height="12" fill="#2B4EFF" />
+             <rect x="4" y="32" width="12" height="12" fill="#2B4EFF" />
+             <rect x="22" y="22" width="4" height="4" fill="#2ED8A0" />
+          </g>
+          <text x="80" y="146" textAnchor="middle" fontSize="9" fill="#6D7590" fontFamily="system-ui">Authenticating...</text>
         </g>
-        <g transform="translate(48 98)">
-          <rect width="140" height="62" rx="10" fill="#E9F8F2" />
-          <text x="10" y="14" fontSize="9" fill="#080F2E" fontWeight="700" fontFamily="system-ui">Sure! Available slots:</text>
-          <rect x="10" y="22" width="60" height="14" rx="4" fill="#fff" stroke="#22B085" />
-          <text x="40" y="32" textAnchor="middle" fontSize="8" fill="#22B085" fontWeight="800" fontFamily="system-ui">09:30 AM</text>
-          <rect x="74" y="22" width="60" height="14" rx="4" fill="#22B085" />
-          <text x="104" y="32" textAnchor="middle" fontSize="8" fill="#fff" fontWeight="800" fontFamily="system-ui">10:15 AM</text>
-          <rect x="10" y="40" width="60" height="14" rx="4" fill="#fff" stroke="#22B085" />
-          <text x="40" y="50" textAnchor="middle" fontSize="8" fill="#22B085" fontWeight="800" fontFamily="system-ui">11:00 AM</text>
-          <rect x="74" y="40" width="60" height="14" rx="4" fill="#fff" stroke="#22B085" />
-          <text x="104" y="50" textAnchor="middle" fontSize="8" fill="#22B085" fontWeight="800" fontFamily="system-ui">04:45 PM</text>
-        </g>
-        <g transform="translate(12 168)">
-          <rect width="168" height="42" rx="10" fill="#F0F3FC" />
-          <text x="10" y="14" fontSize="9" fill="#080F2E" fontFamily="system-ui">10:15 AM works. Confirming</text>
-          <text x="10" y="26" fontSize="9" fill="#080F2E" fontFamily="system-ui">with my insurance ID.</text>
-          <text x="10" y="38" fontSize="9" fill="#22B085" fontWeight="700" fontFamily="system-ui">📎 INS-394821</text>
-        </g>
-        <g transform="translate(48 218)">
-          <rect width="140" height="62" rx="10" fill="#E9F8F2" />
-          <text x="10" y="14" fontSize="9" fill="#080F2E" fontWeight="700" fontFamily="system-ui">Appointment confirmed ✅</text>
-          <text x="10" y="26" fontSize="8" fill="#6D7590" fontFamily="system-ui">Tue 26 Nov · 10:15 AM</text>
-          <text x="10" y="38" fontSize="8" fill="#6D7590" fontFamily="system-ui">Dr. Mehra · Cabin 2</text>
-          <text x="10" y="52" fontSize="8" fill="#22B085" fontWeight="800" fontFamily="system-ui">+ added to your calendar</text>
+
+        <g transform="translate(20 236)">
+          <rect width="160" height="40" rx="10" fill="#2ED8A0" />
+          <text x="80" y="24" textAnchor="middle" fontSize="11" fill="#fff" fontWeight="800" fontFamily="system-ui">Activate Warranty</text>
         </g>
       </g>
 
-      {/* clinic dashboard */}
+      {/* Admin / Certificate view */}
       <g transform="translate(284 72)">
         <rect width="168" height="296" rx="16" fill="#fff" stroke="#E3E8F7" />
         <text x="14" y="26" fontSize="10" fill="#6D7590" fontWeight="700" letterSpacing="1" fontFamily="system-ui">
-          TODAY · DR. MEHRA
+          CERTIFICATE ISSUED
         </text>
 
-        {[
-          ["09:00", "Rohan Shah", "New patient"],
-          ["09:45", "Priya K", "Follow-up"],
-          ["10:15", "Arjun V", "Confirmed"],
-          ["11:00", "Neha S", "Pending"],
-          ["12:00", "Aditi R", "Confirmed"],
-          ["04:30", "Kiran B", "New patient"],
-        ].map(([time, name, tag], i) => (
-          <g key={time} transform={`translate(14 ${42 + i * 40})`}>
-            <rect width="140" height="32" rx="8" fill={tag === "Confirmed" ? "#E9F8F2" : "#F6F8FF"} />
-            <text x="10" y="14" fontSize="10" fill="#080F2E" fontWeight="800" fontFamily="system-ui">{time}</text>
-            <text x="10" y="26" fontSize="9" fill="#080F2E" fontFamily="system-ui">{name}</text>
-            <text x="130" y="20" textAnchor="end" fontSize="8" fill={tag === "Confirmed" ? "#22B085" : "#6D7590"} fontWeight="800" fontFamily="system-ui">
-              {tag === "Confirmed" ? "✓" : "•"} {tag}
-            </text>
-          </g>
-        ))}
+        <rect x="14" y="44" width="140" height="180" rx="12" fill="#F5F8FF" stroke="#2B4EFF" strokeOpacity="0.2" />
+        <circle cx="84" cy="90" r="24" fill="#2ED8A022" />
+        <path d="M74 90 L80 96 L94 84" stroke="#2ED8A0" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        
+        <text x="84" y="136" textAnchor="middle" fontSize="11" fill="#080F2E" fontWeight="800" fontFamily="system-ui">Valid Warranty</text>
+        <text x="84" y="152" textAnchor="middle" fontSize="9" fill="#6D7590" fontFamily="system-ui">ID: W-482910</text>
+        
+        <line x1="34" y1="170" x2="134" y2="170" stroke="#E3E8F7" />
+        <text x="84" y="190" textAnchor="middle" fontSize="9" fill="#080F2E" fontWeight="700" fontFamily="system-ui">Expires: Oct 2026</text>
+
+        <g transform="translate(14 240)">
+          <rect width="140" height="42" rx="10" fill="#F8FAFF" />
+          <text x="10" y="18" fontSize="9" fill="#6D7590" fontFamily="system-ui">Customer notified via</text>
+          <text x="10" y="32" fontSize="10" fill="#22B085" fontWeight="800" fontFamily="system-ui">WhatsApp ✅</text>
+        </g>
       </g>
     </CardShell>
   );

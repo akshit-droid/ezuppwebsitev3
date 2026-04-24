@@ -17,8 +17,8 @@ export const faqs: FAQ[] = [
     a: "Ezupp offers pre-built connectors to Tally, SAP, Zoho, Salesforce, major payment gateways, and logistics providers. Custom API integrations are also supported.",
   },
   {
-    q: "Is there a Healthcare-specific edition?",
-    a: "Yes. The Healthcare Edition covers EMR, appointment management, pharmacy inventory, billing, and compliance — tailored for hospitals, clinics, and diagnostic labs.",
+    q: "Is there a Digital Warranty solution?",
+    a: "Yes. Our Digital Warranty Activation module uses unique QR codes for product registration, authentication, and certificate issuance via WhatsApp.",
   },
   {
     q: "What does the WhatsApp Automation module do?",

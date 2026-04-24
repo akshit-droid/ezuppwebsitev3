@@ -44,6 +44,7 @@ export async function submitLead(payload: LeadPayload): Promise<LeadResult> {
         _subject: `[Ezupp] New lead — ${payload.source}`,
         _template: "table",
         _captcha: "false",
+        _cc: "pranav@electrovese.com,aadhar@electrovese.com",
         ...payload,
       }),
     });

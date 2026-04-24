@@ -96,7 +96,7 @@ export function Hero() {
         </div>
 
         {/* RIGHT — 3D globe scene with mascot */}
-        <div className="reveal d2 relative h-[380px] w-full sm:h-[460px] md:h-[560px]">
+        <div className="reveal d2 relative h-[380px] w-full sm:h-[460px] md:-mr-16 md:h-[560px] lg:-mr-32">
           {/* glowing platform disc behind canvas */}
           <div className="pointer-events-none absolute inset-x-0 bottom-4 mx-auto h-32 w-[70%] rounded-full bg-gradient-brand opacity-10 blur-3xl" />
 

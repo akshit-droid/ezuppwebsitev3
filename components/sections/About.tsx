@@ -34,9 +34,9 @@ const features: Feature[] = [
     desc: "Not a bolt-on. WhatsApp communication is woven into the core platform for every workflow.",
   },
   {
-    icon: "🏥",
+    icon: "🛡️",
     label: "Industry editions",
-    desc: "Pre-configured for healthcare, retail, distribution, and manufacturing — live faster.",
+    desc: "Pre-configured for warranty, retail, distribution, and manufacturing — live faster.",
   },
 ];
 

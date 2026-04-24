@@ -18,12 +18,12 @@ const NODES: NodeData[] = [
   { label: "Fleet", emoji: "🚚", color: "#2B4EFF" },
   { label: "CRM", emoji: "📊", color: "#2ED8A0" },
   { label: "WhatsApp", emoji: "💬", color: "#2B4EFF" },
-  { label: "HRMS", emoji: "👥", color: "#2ED8A0" },
+  { label: "Warranty", emoji: "🛡️", color: "#2ED8A0" },
   { label: "Supply", emoji: "📦", color: "#2B4EFF" },
   { label: "AI", emoji: "🤖", color: "#2ED8A0" },
 ];
 
-const ORBIT_RADIUS = 2.75;
+const ORBIT_RADIUS = 3.25;
 const ORBIT_TILT = 0.32; // radians — slight axial tilt like a planet
 
 /* ----------------------------------------------------------------------- *
@@ -200,7 +200,7 @@ function SecondaryRing() {
   });
   return (
     <mesh ref={ref} rotation={[Math.PI / 2.2, Math.PI / 3, 0]}>
-      <ringGeometry args={[3.15, 3.17, 128]} />
+      <ringGeometry args={[3.85, 3.87, 128]} />
       <meshBasicMaterial
         color="#2ED8A0"
         transparent
@@ -239,8 +239,8 @@ function SceneContents() {
         opacity={0.55}
       />
 
-      {/* Lift the whole system up and nudge right — clears bottom-left for Ezzy */}
-      <group position={[0.35, 0.55, 0]}>
+      {/* Centered nudge (slight height lift) to prevent edge clipping on the right */}
+      <group position={[0, 0.45, 0]}>
         <Globe />
         <SecondaryRing />
         <OrbitSystem />
@@ -256,7 +256,7 @@ export default function HeroScene() {
   return (
     <Canvas
       dpr={[1, 2]}
-      camera={{ position: [0, 1.1, 7.2], fov: 46 }}
+      camera={{ position: [0, 1.1, 10.0], fov: 46 }}
       style={{ width: "100%", height: "100%", background: "transparent" }}
       gl={{ antialias: true, alpha: true }}
     >

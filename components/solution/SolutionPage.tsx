@@ -68,7 +68,8 @@ export function SolutionPage({
   howItWorks,
   leadSource,
   leadInterest,
-}: SolutionPageProps) {
+  children,
+}: SolutionPageProps & { children?: ReactNode }) {
   return (
     <RevealProvider>
       <Navbar />
@@ -142,6 +143,9 @@ export function SolutionPage({
             </div>
           </Container>
         </section>
+
+        {/* Custom children (e.g. specialized images) can be injected here */}
+        {children}
 
         {/* BENEFIT STRIP (optional) */}
         {benefits && benefits.length > 0 && (

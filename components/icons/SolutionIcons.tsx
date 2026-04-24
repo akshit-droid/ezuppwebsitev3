@@ -111,11 +111,15 @@ export function CRMIcon({ size = 32, ...rest }: IconProps) {
   );
 }
 
-export function HealthIcon({ size = 32, ...rest }: IconProps) {
+export function WarrantyIcon({ size = 32, ...rest }: IconProps) {
   return (
     <svg {...base(size)} {...rest}>
       <rect x="4" y="4" width="24" height="24" rx="4" stroke="#2B4EFF" strokeWidth="1.8" />
-      <path d="M16 10v12M10 16h12" stroke="#2ED8A0" strokeWidth="2.4" strokeLinecap="round" />
+      {/* QR-like patterns */}
+      <rect x="8" y="8" width="6" height="6" fill="#2ED8A0" />
+      <rect x="18" y="8" width="6" height="6" fill="#2ED8A0" />
+      <rect x="8" y="18" width="6" height="6" fill="#2ED8A0" />
+      <path d="M18 18h2v2h-2zM22 18h2v2h-2zM18 22h2v2h-2zM22 22h2v2h-2z" fill="#2B4EFF" />
     </svg>
   );
 }
