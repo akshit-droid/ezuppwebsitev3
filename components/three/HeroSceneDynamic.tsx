@@ -19,6 +19,12 @@ const HeroScene = dynamic(() => import("./HeroScene"), {
   ),
 });
 
-export default function HeroSceneDynamic() {
-  return <HeroScene />;
+export default function HeroSceneDynamic({
+  compact = false,
+}: {
+  /** Pass true on mobile to hide the in-canvas "Live uptime" card so it
+      doesn't overlap the orbit on a narrow viewport. */
+  compact?: boolean;
+}) {
+  return <HeroScene compact={compact} />;
 }

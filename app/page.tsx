@@ -6,12 +6,14 @@ import { Industries } from "@/components/sections/Industries";
 import { Stats } from "@/components/sections/Stats";
 import { About } from "@/components/sections/About";
 import { Integrations } from "@/components/sections/Integrations";
+import { Compare } from "@/components/sections/Compare";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FAQ } from "@/components/sections/FAQ";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
 import { RevealProvider } from "@/components/ui/Reveal";
 import { ChatWidget } from "@/components/chat/ChatWidget";
+import { WhyEzuppQuiz } from "@/components/quiz/WhyEzuppQuiz";
 
 export default function Home() {
   return (
@@ -25,12 +27,14 @@ export default function Home() {
         <Stats />
         <About />
         <Integrations />
+        <Compare />
         <Testimonials />
         <FAQ />
         <Contact />
       </main>
       <Footer />
       <ChatWidget />
+      <WhyEzuppQuiz />
     </RevealProvider>
   );
 }

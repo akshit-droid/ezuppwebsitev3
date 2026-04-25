@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SolutionPage } from "@/components/solution/SolutionPage";
 import { LoyaltyGraphic } from "@/components/solution/SolutionGraphics";
+import { LoyaltyShowcase } from "@/components/solution/LoyaltyShowcase";
 
 export const metadata: Metadata = {
   title: "Loyalty Management · QR Warranty & Channel Incentives | Ezupp",
@@ -75,6 +76,9 @@ export default function LoyaltyPage() {
           desc: "Users redeem for cash, gifts, or tier upgrades — and you see who your best channel partners really are.",
         },
       ]}
-    />
+    >
+      {/* Rich product showcase — scan flow, channel cascade, schemes, leaderboard, wallet, analytics, payouts */}
+      <LoyaltyShowcase />
+    </SolutionPage>
   );
 }

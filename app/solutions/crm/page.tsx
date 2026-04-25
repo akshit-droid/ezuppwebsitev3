@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SolutionPage } from "@/components/solution/SolutionPage";
 import { CRMGraphic } from "@/components/solution/SolutionGraphics";
+import { CrmShowcase } from "@/components/solution/CrmShowcase";
 
 export const metadata: Metadata = {
   title: "Smart CRM · Pipeline, Appointments & Automation | Ezupp",
@@ -90,6 +91,9 @@ export default function CRMPage() {
           desc: "Let Ezupp assign leads, schedule appointments, send follow-ups, and surface risk. Your team focuses on relationships.",
         },
       ]}
-    />
+    >
+      {/* Rich product showcase — pipeline + dashboard + agent app + sequences */}
+      <CrmShowcase />
+    </SolutionPage>
   );
 }

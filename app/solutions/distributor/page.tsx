@@ -1,67 +1,82 @@
 import type { Metadata } from "next";
 import { SolutionPage } from "@/components/solution/SolutionPage";
 import { DistributorGraphic } from "@/components/solution/SolutionGraphics";
+import { DistributorShowcase } from "@/components/solution/DistributorShowcase";
 
 export const metadata: Metadata = {
-  title: "Distributor Management · End-to-end Network Visibility | Ezupp",
+  title:
+    "Distributor Management · Master Data, Pricing & Loyalty | Ezupp ERP",
   description:
-    "Orders, inventory, settlements, and secondary sales — full visibility across your distributor network with a simple DMS.",
+    "Govern your distributor network the way your business works — Channel, Segment, Division, Plants. Control product visibility, dynamic pricing, sales orders, and run incentive programs from one ERP-grade platform.",
 };
 
 export default function DistributorPage() {
   return (
     <SolutionPage
-      eyebrow="Distribution"
+      eyebrow="Distribution · ERP Module"
       title={
         <>
           See your entire <span className="grad-text">distributor network</span>
           &nbsp;in one place.
         </>
       }
-      tagline="Orders, inventory, settlements, schemes, and secondary sales — unified across every distributor."
-      description="Brands with large distributor footprints spend weeks consolidating reports from spreadsheets that never quite match. Ezupp DMS replaces that with a single source of truth — orders, stock, claims, and secondary sales flow in daily, automatically."
+      tagline="Master data, product visibility, dynamic pricing, sales orders & loyalty — across every distributor."
+      description="Ezupp's Distributor Management is built on the Ezupp ERP — so the master data your business actually runs on (Channel, Segment, Division, Plants) lives in one place. Control what each distributor sees, set segment-wise pricing, approve sales orders, and run incentive or loyalty programs — through an admin console for HQ and a mobile app for every distributor."
       hero={<DistributorGraphic />}
       mascotPose="default"
       leadSource="Distributor Management page"
       leadInterest="Distributor Management"
       benefits={[
         { stat: "100%", label: "Network visibility" },
-        { stat: "−64%", label: "Claim reconciliation time" },
+        { stat: "4-tier", label: "Master data depth" },
         { stat: "+29%", label: "Fill rate" },
-        { stat: "24 hr", label: "Secondary sales refresh" },
+        { stat: "Live", label: "Sales orders" },
       ]}
       features={[
         {
-          glyph: "📦",
-          title: "Distributor Portal",
-          desc: "A clean web + mobile portal for distributors — orders, inventory, schemes, claims, ledger and payments.",
+          glyph: "🗂️",
+          title: "Master Data — Channel, Segment, Division, Plants",
+          desc: "Model your network the way your business actually works. Every distributor sits inside a clear hierarchy that drives pricing, visibility, schemes and reporting.",
         },
         {
-          glyph: "📈",
-          title: "Secondary Sales Capture",
-          desc: "Retailer-level sales flow back daily from distributor ERPs or a lightweight retailer app — unlocking real market view.",
+          glyph: "👁️",
+          title: "Product Visibility Control",
+          desc: "Decide what catalogue each distributor sees — by Channel, Segment, Division or any combination. Launch SKUs to one cohort without exposing the rest.",
         },
         {
           glyph: "💰",
+          title: "Dynamic Pricing",
+          desc: "Maintain segment-wise rate cards, slabs, and contract pricing. Update once and rates flow to every distributor app — instantly.",
+        },
+        {
+          glyph: "🧾",
+          title: "Sales Orders, End-to-end",
+          desc: "Distributors place orders from their app. HQ approves, allocates from the right plant, and pushes the dispatch — all from the same record.",
+        },
+        {
+          glyph: "🏆",
+          title: "Incentive & Loyalty Programs",
+          desc: "Design slab schemes, QPS, mix-of-product schemes, and loyalty tiers. Distributors track their own progress live; payouts are auto-credited.",
+        },
+        {
+          glyph: "📈",
+          title: "Secondary Sales & Network Analytics",
+          desc: "Retailer-level data flows back daily. Depth of distribution, out-of-stock alerts, white-space — across your whole network.",
+        },
+        {
+          glyph: "💳",
           title: "Claims & Settlements",
-          desc: "Scheme claims, credit notes, and settlements automated end-to-end — no more Excel wars at month end.",
+          desc: "Scheme claims, credit notes, and settlements automated end-to-end — no more Excel wars at month-end.",
         },
         {
-          glyph: "🎯",
-          title: "Targeted Schemes",
-          desc: "Design slab, QPS, or product-mix schemes for any distributor cohort. Performance and ROI visible from day one.",
-        },
-        {
-          glyph: "📊",
-          title: "Network Analytics",
-          desc: "Depth of distribution, out-of-stock alerts, share-of-shelf, and white-space analysis — across your network.",
-        },
-        {
-          glyph: "🔄",
-          title: "ERP + Loyalty Integration",
-          desc: "Two-way sync with your ERP and Ezupp Loyalty — so primary, secondary, and tertiary all tell one coherent story.",
+          glyph: "📱",
+          title: "App + Admin Console",
+          desc: "One ERP, two surfaces — a mobile app for every distributor and an admin console for HQ. Same data, no syncing, no second tool.",
         },
       ]}
-    />
+    >
+      {/* Rich product showcase — hierarchy, pricing matrix, orders feed, loyalty */}
+      <DistributorShowcase />
+    </SolutionPage>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SolutionPage } from "@/components/solution/SolutionPage";
 import { AIGraphic } from "@/components/solution/SolutionGraphics";
+import { AIShowcase } from "@/components/solution/AIShowcase";
 
 export const metadata: Metadata = {
   title: "AI Powered Ecosystem · Smart ERP & CRM | Ezupp",
@@ -75,6 +76,10 @@ export default function AIPage() {
           desc: "Routing, scheduling, follow-ups and alerts trigger automatically. Humans focus on selling and closing.",
         },
       ]}
-    />
+    >
+      {/* Rich product showcase — qualification, calls, routing, route-opt, predictive, anomaly */}
+      <AIShowcase />
+    </SolutionPage>
   );
 }
+

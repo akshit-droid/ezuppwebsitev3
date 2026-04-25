@@ -76,18 +76,30 @@ export function Contact() {
               industry, team size, and specific workflows.
             </p>
 
-            <div className="mt-10 space-y-5">
+            <div className="mt-10 space-y-6">
               {[
-                { k: "📧", v: "hello@electrovese.com", s: "Email" },
-                { k: "📞", v: "+91 98765 43210", s: "Call or WhatsApp" },
-                { k: "📍", v: "Electrovese Solutions, India", s: "Headquarters" },
+                { k: "📧", v: "aadhar@electrovese.com", l: "mailto:aadhar@electrovese.com", s: "Email" },
+                { k: "📞", v: "+91 86993 35553", l: "tel:+918699335553", s: "Call or WhatsApp" },
+                { 
+                  k: "📍", 
+                  v: "Electrovese Solutions, Industrial & Commercial Park, Industrial Area Phase I, Chandigarh, 160002", 
+                  l: "https://electrovese.com/", 
+                  s: "Headquarters" 
+                },
               ].map((f) => (
                 <div key={f.v} className="flex items-center gap-4">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-brand-soft text-[20px]">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-brand-soft text-[20px]">
                     {f.k}
                   </div>
                   <div>
-                    <div className="text-[14px] font-semibold text-brand-navy">{f.v}</div>
+                    <a 
+                      href={f.l} 
+                      target={f.l.startsWith("http") ? "_blank" : undefined}
+                      rel={f.l.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="text-[14px] font-semibold text-brand-navy hover:text-brand-blue transition-colors"
+                    >
+                      {f.v}
+                    </a>
                     <div className="mt-0.5 text-[12px] text-brand-gray">{f.s}</div>
                   </div>
                 </div>

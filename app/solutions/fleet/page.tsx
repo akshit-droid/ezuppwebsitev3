@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SolutionPage } from "@/components/solution/SolutionPage";
 import { FleetGraphic } from "@/components/solution/SolutionGraphics";
+import { FleetShowcase } from "@/components/solution/FleetShowcase";
 
 export const metadata: Metadata = {
   title: "Sales Fleet Management · Real-time Tracking & Routing | Ezupp",
@@ -62,6 +63,9 @@ export default function FleetPage() {
           desc: "Reps and managers coordinate inside the same app — no more WhatsApp archaeology to find yesterday's commitments.",
         },
       ]}
-    />
+    >
+      {/* Rich product showcase — phone mockup + dashboard cards */}
+      <FleetShowcase />
+    </SolutionPage>
   );
 }

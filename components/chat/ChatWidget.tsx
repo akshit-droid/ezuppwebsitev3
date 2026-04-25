@@ -8,13 +8,32 @@ import { submitLead } from "@/lib/submitLead";
 import { cn } from "@/lib/cn";
 
 /* ----------------------------------------------------------------------- *
- * Prefilled conversation starters
+ * Conversation tree — each top-level prompt has a small list of follow-up
+ * questions. After 2 (or 3) questions the user is routed to the form
+ * with their selections summarised in the message field, so the enterprise
+ * team gets meaningful context rather than just "wants a demo".
  * ----------------------------------------------------------------------- */
+interface FollowupOption {
+  /** short label rendered on the chip */
+  label: string;
+  /** longer phrasing used in the summary handed to the form */
+  value: string;
+}
+
+interface FollowupQuestion {
+  question: string;
+  options: FollowupOption[];
+}
+
 interface Prompt {
   id: string;
   title: string;
-  lead: string; // seeds the message field
+  /** seeds the message field if user skips follow-ups */
+  lead: string;
   emoji: string;
+  /** Ezzy's friendly intro line shown above the first follow-up */
+  intro: string;
+  followups: FollowupQuestion[];
 }
 
 const PROMPTS: Prompt[] = [
@@ -23,28 +42,156 @@ const PROMPTS: Prompt[] = [
     title: "Book a live demo of the full platform",
     lead: "I'd like to see a live demo of the full Ezupp platform for my team.",
     emoji: "🎬",
+    intro:
+      "Awesome — we run sharper demos when we know who you're for. Two quick questions:",
+    followups: [
+      {
+        question: "How big is your team?",
+        options: [
+          { label: "Solo / Founder", value: "Team size: Solo / Founder" },
+          { label: "5 – 25", value: "Team size: 5–25 people" },
+          { label: "25 – 100", value: "Team size: 25–100 people" },
+          { label: "100+ people", value: "Team size: 100+ people" },
+        ],
+      },
+      {
+        question: "Which area should the demo focus on?",
+        options: [
+          {
+            label: "Field & distribution",
+            value: "Demo focus: Field operations & distribution",
+          },
+          {
+            label: "CRM & sales",
+            value: "Demo focus: CRM & sales pipeline",
+          },
+          {
+            label: "WhatsApp marketing",
+            value: "Demo focus: WhatsApp automation & marketing",
+          },
+          {
+            label: "Full platform tour",
+            value: "Demo focus: End-to-end platform tour",
+          },
+        ],
+      },
+    ],
   },
   {
     id: "modules",
     title: "Which modules are right for my business?",
     lead: "I'm not sure which Ezupp modules fit my business. Could someone advise?",
     emoji: "🧩",
+    intro:
+      "Let's find your fit — answer two quick things and I'll line up the right specialist.",
+    followups: [
+      {
+        question: "What's your industry?",
+        options: [
+          { label: "Electronics", value: "Industry: Electronics & appliances" },
+          { label: "FMCG / Food", value: "Industry: FMCG / Food & beverage" },
+          { label: "Manufacturing", value: "Industry: Manufacturing" },
+          { label: "Retail / D2C", value: "Industry: Retail / D2C" },
+          { label: "Other", value: "Industry: Other" },
+        ],
+      },
+      {
+        question: "What's slowing your team down most?",
+        options: [
+          {
+            label: "Manual coordination",
+            value: "Pain point: Manual ops & coordination",
+          },
+          {
+            label: "Lost / scattered leads",
+            value: "Pain point: Leads slipping through the cracks",
+          },
+          {
+            label: "Service & warranty",
+            value: "Pain point: After-sales, service & warranty",
+          },
+          {
+            label: "Inventory & dispatch",
+            value: "Pain point: Inventory / supply / dispatch chaos",
+          },
+        ],
+      },
+    ],
   },
   {
     id: "whatsapp",
     title: "How does WhatsApp Automation work?",
     lead: "Can you walk me through how Ezupp's WhatsApp Automation module works?",
     emoji: "💬",
+    intro:
+      "Happy to walk you through it — first, two quick questions so the deep-dive lands right:",
+    followups: [
+      {
+        question: "Broadcasts, 2-way conversations, or both?",
+        options: [
+          { label: "Broadcasts", value: "Use case: WhatsApp broadcasts" },
+          {
+            label: "2-way chat",
+            value: "Use case: 2-way customer conversations",
+          },
+          { label: "Both", value: "Use case: Broadcasts + 2-way conversations" },
+        ],
+      },
+      {
+        question: "How many customers reach you weekly?",
+        options: [
+          { label: "Under 1k", value: "Volume: Under 1,000 / week" },
+          { label: "1k – 10k", value: "Volume: 1,000 – 10,000 / week" },
+          { label: "10k – 100k", value: "Volume: 10,000 – 100,000 / week" },
+          { label: "100k+", value: "Volume: 100,000+ / week" },
+        ],
+      },
+    ],
   },
   {
     id: "integrate",
     title: "Can Ezupp integrate with our existing ERP?",
     lead: "We currently run on another system — can Ezupp integrate with it?",
     emoji: "🔌",
+    intro:
+      "Short answer: yes — but the right path depends on what you run today. Quick check:",
+    followups: [
+      {
+        question: "Which system are you on today?",
+        options: [
+          { label: "SAP", value: "Current system: SAP" },
+          { label: "Tally", value: "Current system: Tally" },
+          { label: "Oracle / NetSuite", value: "Current system: Oracle / NetSuite" },
+          { label: "Custom / in-house", value: "Current system: Custom / in-house build" },
+          { label: "Other", value: "Current system: Other" },
+        ],
+      },
+      {
+        question: "What's the priority?",
+        options: [
+          {
+            label: "Two-way data sync",
+            value: "Goal: Two-way data sync with our existing system",
+          },
+          {
+            label: "Replace existing system",
+            value: "Goal: Replace our current system with Ezupp",
+          },
+          {
+            label: "Add WhatsApp / Field on top",
+            value: "Goal: Layer Ezupp's WhatsApp / Field modules on top",
+          },
+          {
+            label: "Just exploring",
+            value: "Goal: Just exploring options",
+          },
+        ],
+      },
+    ],
   },
 ];
 
-type Step = "prompts" | "form" | "success" | "error";
+type Step = "prompts" | "followups" | "form" | "success" | "error";
 
 interface FormState {
   name: string;
@@ -55,10 +202,29 @@ interface FormState {
 
 const emptyForm: FormState = { name: "", email: "", phone: "", message: "" };
 
+interface Answer {
+  question: string;
+  answer: string; // long-form value
+  label: string; // short label that was clicked
+}
+
+function buildMessage(prompt: Prompt, answers: Answer[]): string {
+  const lines: string[] = [prompt.lead, ""];
+  if (answers.length) {
+    lines.push("Quick context:");
+    answers.forEach((a) => {
+      lines.push(`• ${a.answer}`);
+    });
+  }
+  return lines.join("\n");
+}
+
 export function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState<Step>("prompts");
   const [selectedPrompt, setSelectedPrompt] = useState<Prompt | null>(null);
+  const [followupIdx, setFollowupIdx] = useState(0);
+  const [answers, setAnswers] = useState<Answer[]>([]);
   const [form, setForm] = useState<FormState>(emptyForm);
   const [submitting, setSubmitting] = useState(false);
   const [err, setErr] = useState<string | null>(null);
@@ -79,7 +245,6 @@ export function ChatWidget() {
   /* autofocus name when form appears */
   useEffect(() => {
     if (step === "form") {
-      // short delay so the transition completes first
       const t = setTimeout(() => firstInputRef.current?.focus(), 150);
       return () => clearTimeout(t);
     }
@@ -87,8 +252,60 @@ export function ChatWidget() {
 
   function pickPrompt(p: Prompt) {
     setSelectedPrompt(p);
-    setForm((f) => ({ ...f, message: p.lead }));
-    setStep("form");
+    setFollowupIdx(0);
+    setAnswers([]);
+    if (p.followups.length === 0) {
+      setForm((f) => ({ ...f, message: p.lead }));
+      setStep("form");
+    } else {
+      setStep("followups");
+    }
+  }
+
+  function pickAnswer(opt: FollowupOption) {
+    if (!selectedPrompt) return;
+    const currentQuestion = selectedPrompt.followups[followupIdx].question;
+    const newAnswers: Answer[] = [
+      ...answers,
+      { question: currentQuestion, answer: opt.value, label: opt.label },
+    ];
+    setAnswers(newAnswers);
+
+    const isLast = followupIdx + 1 >= selectedPrompt.followups.length;
+    if (isLast) {
+      // Build summary message and go to form
+      setForm((f) => ({
+        ...f,
+        message: buildMessage(selectedPrompt, newAnswers),
+      }));
+      setStep("form");
+    } else {
+      setFollowupIdx(followupIdx + 1);
+    }
+  }
+
+  function backStep() {
+    if (step === "followups") {
+      if (followupIdx === 0) {
+        // back to prompts
+        setSelectedPrompt(null);
+        setAnswers([]);
+        setStep("prompts");
+      } else {
+        // pop last answer, go back one question
+        setAnswers((a) => a.slice(0, -1));
+        setFollowupIdx((i) => i - 1);
+      }
+    } else if (step === "form") {
+      // go back to last follow-up if there were follow-ups, else prompts
+      if (selectedPrompt && selectedPrompt.followups.length > 0) {
+        setStep("followups");
+        setFollowupIdx(selectedPrompt.followups.length - 1);
+        setAnswers((a) => a.slice(0, -1));
+      } else {
+        reset();
+      }
+    }
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -117,10 +334,18 @@ export function ChatWidget() {
 
   function reset() {
     setSelectedPrompt(null);
+    setFollowupIdx(0);
+    setAnswers([]);
     setForm(emptyForm);
     setErr(null);
     setStep("prompts");
   }
+
+  const currentFollowup =
+    selectedPrompt && step === "followups"
+      ? selectedPrompt.followups[followupIdx]
+      : null;
+  const followupTotal = selectedPrompt?.followups.length ?? 0;
 
   return (
     <>
@@ -248,8 +473,107 @@ export function ChatWidget() {
               </div>
             )}
 
+            {step === "followups" && selectedPrompt && currentFollowup && (
+              <div className="animate-fade-in space-y-4">
+                {/* echo of the prompt the user picked */}
+                <div className="ml-auto inline-block max-w-[85%] rounded-2xl rounded-br-sm bg-gradient-brand px-4 py-2.5 text-[13px] font-semibold text-white shadow-card">
+                  {selectedPrompt.title}
+                </div>
+
+                {/* Ezzy intro line — only on first question so it doesn't repeat */}
+                {followupIdx === 0 && (
+                  <div className="flex items-start gap-2">
+                    <div className="rounded-2xl rounded-bl-sm bg-brand-light-gray px-4 py-3 text-[13px] leading-[1.55] text-brand-navy">
+                      <span className="mr-1.5">{selectedPrompt.emoji}</span>
+                      {selectedPrompt.intro}
+                    </div>
+                  </div>
+                )}
+
+                {/* prior answers as small bubbles so the user feels heard */}
+                {answers.map((a, i) => (
+                  <div
+                    key={`a-${i}`}
+                    className="ml-auto inline-block max-w-[85%] rounded-2xl rounded-br-sm bg-brand-blue/10 px-3.5 py-2 text-[12.5px] font-semibold text-brand-navy"
+                  >
+                    {a.label}
+                  </div>
+                ))}
+
+                {/* progress dots */}
+                <div className="flex items-center gap-1.5 pl-1">
+                  {Array.from({ length: followupTotal }).map((_, i) => (
+                    <span
+                      key={i}
+                      className={cn(
+                        "h-1.5 rounded-full transition-all",
+                        i < followupIdx
+                          ? "w-6 bg-brand-teal"
+                          : i === followupIdx
+                          ? "w-6 bg-brand-blue"
+                          : "w-1.5 bg-brand-navy/15",
+                      )}
+                    />
+                  ))}
+                  <span className="ml-1 text-[10px] font-bold uppercase tracking-wider text-brand-gray">
+                    Step {followupIdx + 1} / {followupTotal}
+                  </span>
+                </div>
+
+                {/* current question */}
+                <div className="flex items-start gap-2">
+                  <div className="rounded-2xl rounded-bl-sm bg-brand-light-gray px-4 py-3 text-[13.5px] font-semibold leading-[1.5] text-brand-navy">
+                    {currentFollowup.question}
+                  </div>
+                </div>
+
+                {/* options */}
+                <div className="grid grid-cols-2 gap-2">
+                  {currentFollowup.options.map((opt) => (
+                    <button
+                      key={opt.label}
+                      type="button"
+                      onClick={() => pickAnswer(opt)}
+                      className={cn(
+                        "group rounded-xl border border-black/5 bg-white px-3 py-2.5 text-left text-[12.5px] font-semibold text-brand-navy",
+                        "transition hover:-translate-y-0.5 hover:border-brand-blue/40 hover:bg-brand-blue/[.04] hover:shadow-card",
+                        "active:translate-y-0",
+                      )}
+                    >
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* nav row */}
+                <div className="flex items-center justify-between pt-1">
+                  <button
+                    type="button"
+                    onClick={backStep}
+                    className="text-[12px] font-bold text-brand-navy/55 transition hover:text-brand-blue"
+                  >
+                    ← Back
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (!selectedPrompt) return;
+                      setForm((f) => ({
+                        ...f,
+                        message: buildMessage(selectedPrompt, answers),
+                      }));
+                      setStep("form");
+                    }}
+                    className="text-[12px] font-bold text-brand-navy/55 transition hover:text-brand-blue"
+                  >
+                    Skip to form →
+                  </button>
+                </div>
+              </div>
+            )}
+
             {step === "form" && (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="animate-fade-in space-y-4">
                 {selectedPrompt && (
                   <div className="flex items-start gap-2 rounded-2xl rounded-bl-sm bg-brand-light-gray px-4 py-3 text-[13px] leading-[1.55] text-brand-navy">
                     <span className="text-[15px] leading-none">
@@ -260,8 +584,18 @@ export function ChatWidget() {
                       <strong className="font-extrabold">
                         {selectedPrompt.title.toLowerCase()}
                       </strong>
-                      . Drop your details and I&apos;ll route you to the right
-                      enterprise lead.
+                      .
+                      {answers.length > 0 ? (
+                        <>
+                          {" "}I&apos;ve noted{" "}
+                          <strong className="font-extrabold">
+                            {answers.map((a) => a.label).join(" · ")}
+                          </strong>
+                          . Drop your details and I&apos;ll route you to the right specialist.
+                        </>
+                      ) : (
+                        <> Drop your details and I&apos;ll route you to the right enterprise lead.</>
+                      )}
                     </span>
                   </div>
                 )}
@@ -304,7 +638,7 @@ export function ChatWidget() {
                 <ChatField label="Message">
                   <textarea
                     required
-                    rows={3}
+                    rows={4}
                     value={form.message}
                     onChange={(e) =>
                       setForm({ ...form, message: e.target.value })
@@ -320,7 +654,7 @@ export function ChatWidget() {
                   </Button>
                   <button
                     type="button"
-                    onClick={reset}
+                    onClick={backStep}
                     className="rounded-lg border border-black/10 px-3 py-[10px] text-[12px] font-bold text-brand-navy/60 transition hover:border-brand-blue hover:text-brand-blue"
                   >
                     Back

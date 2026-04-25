@@ -92,9 +92,11 @@ export function Solutions() {
         <div className="reveal max-w-3xl">
           <SectionEyebrow>Solutions</SectionEyebrow>
           <h2 className="mt-4 text-[clamp(30px,4vw,52px)] font-extrabold leading-[1.1] tracking-[-0.03em] text-brand-navy md:mt-5">
-            Nine modules. One platform.
+            Take what fits. Add when you grow.
             <br />
-            <span className="font-medium text-brand-gray">Zero silos.</span>
+            <span className="font-medium text-brand-gray">
+              All nine modules speak the same language.
+            </span>
           </h2>
         </div>
 

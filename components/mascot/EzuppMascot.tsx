@@ -1,4 +1,6 @@
-import type { SVGProps } from "react";
+"use client";
+
+import { useId, type SVGProps } from "react";
 import { cn } from "@/lib/cn";
 
 export type MascotPose =
@@ -32,6 +34,19 @@ export function EzuppMascot({
   animated = true,
   ...rest
 }: MascotProps) {
+  // Unique IDs per instance — without this, multiple mascots on the same page
+  // share gradient IDs and the browser's url(#…) lookup picks the first one,
+  // which can leave later instances with no fill (mascot appears white).
+  const reactId = useId();
+  const uid = reactId.replace(/[:]/g, "");
+  const ids = {
+    body: `m-body-${uid}`,
+    belly: `m-belly-${uid}`,
+    accent: `m-accent-${uid}`,
+    shadow: `m-shadow-${uid}`,
+    glow: `m-glow-${uid}`,
+  };
+
   return (
     <svg
       width={size}
@@ -45,29 +60,29 @@ export function EzuppMascot({
       {...rest}
     >
       <defs>
-        <linearGradient id="mascotBody" x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id={ids.body} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor="#3A5CFF" />
           <stop offset="1" stopColor="#2B4EFF" />
         </linearGradient>
-        <linearGradient id="mascotBelly" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id={ids.belly} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#F9FBFF" />
           <stop offset="1" stopColor="#E7ECFF" />
         </linearGradient>
-        <linearGradient id="mascotAccent" x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id={ids.accent} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor="#2ED8A0" />
           <stop offset="1" stopColor="#22B085" />
         </linearGradient>
-        <radialGradient id="mascotShadow" cx="0.5" cy="0.5" r="0.5">
+        <radialGradient id={ids.shadow} cx="0.5" cy="0.5" r="0.5">
           <stop offset="0" stopColor="#080F2E" stopOpacity="0.35" />
           <stop offset="1" stopColor="#080F2E" stopOpacity="0" />
         </radialGradient>
-        <filter id="mascotGlow" x="-20%" y="-20%" width="140%" height="140%">
+        <filter id={ids.glow} x="-20%" y="-20%" width="140%" height="140%">
           <feGaussianBlur stdDeviation="3" />
         </filter>
       </defs>
 
       {/* shadow */}
-      <ellipse cx="100" cy="205" rx="55" ry="7" fill="url(#mascotShadow)" />
+      <ellipse cx="100" cy="205" rx="55" ry="7" fill={`url(#${ids.shadow})`} />
 
       {/* antenna */}
       <line
@@ -79,8 +94,8 @@ export function EzuppMascot({
         strokeWidth="3"
         strokeLinecap="round"
       />
-      <circle cx="100" cy="18" r="6" fill="url(#mascotAccent)" />
-      <circle cx="100" cy="18" r="10" fill="#2ED8A0" opacity="0.25" filter="url(#mascotGlow)" />
+      <circle cx="100" cy="18" r="6" fill={`url(#${ids.accent})`} />
+      <circle cx="100" cy="18" r="10" fill="#2ED8A0" opacity="0.25" filter={`url(#${ids.glow})`} />
 
       {/* head */}
       <rect
@@ -89,7 +104,7 @@ export function EzuppMascot({
         width="116"
         height="86"
         rx="28"
-        fill="url(#mascotBody)"
+        fill={`url(#${ids.body})`}
       />
       {/* head highlight */}
       <path
@@ -102,7 +117,7 @@ export function EzuppMascot({
       />
 
       {/* face plate */}
-      <rect x="56" y="56" width="88" height="50" rx="18" fill="url(#mascotBelly)" />
+      <rect x="56" y="56" width="88" height="50" rx="18" fill={`url(#${ids.belly})`} />
 
       {/* eyes */}
       <g>
@@ -166,10 +181,10 @@ export function EzuppMascot({
         width="88"
         height="60"
         rx="20"
-        fill="url(#mascotBody)"
+        fill={`url(#${ids.body})`}
       />
       {/* body panel */}
-      <rect x="72" y="142" width="56" height="32" rx="10" fill="url(#mascotBelly)" />
+      <rect x="72" y="142" width="56" height="32" rx="10" fill={`url(#${ids.belly})`} />
       {/* status dots on panel */}
       <circle cx="84" cy="158" r="3" fill="#2ED8A0" />
       <circle cx="96" cy="158" r="3" fill="#2B4EFF" />
@@ -181,35 +196,35 @@ export function EzuppMascot({
         <g style={{ transformOrigin: "45px 140px" }}>
           <g className={animated ? "origin-[45px_140px] animate-wave" : undefined}>
             {/* left arm waving up */}
-            <rect x="24" y="108" width="18" height="44" rx="9" fill="url(#mascotBody)" transform="rotate(-28 33 130)" />
-            <circle cx="22" cy="106" r="11" fill="url(#mascotAccent)" />
+            <rect x="24" y="108" width="18" height="44" rx="9" fill={`url(#${ids.body})`} transform="rotate(-28 33 130)" />
+            <circle cx="22" cy="106" r="11" fill={`url(#${ids.accent})`} />
           </g>
           {/* right arm down */}
-          <rect x="158" y="138" width="18" height="44" rx="9" fill="url(#mascotBody)" />
-          <circle cx="167" cy="184" r="11" fill="url(#mascotAccent)" />
+          <rect x="158" y="138" width="18" height="44" rx="9" fill={`url(#${ids.body})`} />
+          <circle cx="167" cy="184" r="11" fill={`url(#${ids.accent})`} />
         </g>
       ) : pose === "celebrate" ? (
         <>
-          <rect x="18" y="108" width="18" height="44" rx="9" fill="url(#mascotBody)" transform="rotate(-40 27 130)" />
-          <circle cx="15" cy="100" r="11" fill="url(#mascotAccent)" />
-          <rect x="164" y="108" width="18" height="44" rx="9" fill="url(#mascotBody)" transform="rotate(40 173 130)" />
-          <circle cx="185" cy="100" r="11" fill="url(#mascotAccent)" />
+          <rect x="18" y="108" width="18" height="44" rx="9" fill={`url(#${ids.body})`} transform="rotate(-40 27 130)" />
+          <circle cx="15" cy="100" r="11" fill={`url(#${ids.accent})`} />
+          <rect x="164" y="108" width="18" height="44" rx="9" fill={`url(#${ids.body})`} transform="rotate(40 173 130)" />
+          <circle cx="185" cy="100" r="11" fill={`url(#${ids.accent})`} />
         </>
       ) : pose === "thinking" ? (
         <>
           {/* right arm up to chin */}
-          <rect x="124" y="96" width="16" height="36" rx="8" fill="url(#mascotBody)" transform="rotate(28 132 114)" />
-          <circle cx="146" cy="100" r="10" fill="url(#mascotAccent)" />
+          <rect x="124" y="96" width="16" height="36" rx="8" fill={`url(#${ids.body})`} transform="rotate(28 132 114)" />
+          <circle cx="146" cy="100" r="10" fill={`url(#${ids.accent})`} />
           {/* left arm across waist */}
-          <rect x="28" y="140" width="18" height="40" rx="9" fill="url(#mascotBody)" transform="rotate(15 37 160)" />
-          <circle cx="50" cy="182" r="11" fill="url(#mascotAccent)" />
+          <rect x="28" y="140" width="18" height="40" rx="9" fill={`url(#${ids.body})`} transform="rotate(15 37 160)" />
+          <circle cx="50" cy="182" r="11" fill={`url(#${ids.accent})`} />
         </>
       ) : pose === "working" ? (
         <>
-          <rect x="28" y="140" width="18" height="36" rx="9" fill="url(#mascotBody)" />
-          <circle cx="37" cy="178" r="10" fill="url(#mascotAccent)" />
-          <rect x="154" y="140" width="18" height="36" rx="9" fill="url(#mascotBody)" />
-          <circle cx="163" cy="178" r="10" fill="url(#mascotAccent)" />
+          <rect x="28" y="140" width="18" height="36" rx="9" fill={`url(#${ids.body})`} />
+          <circle cx="37" cy="178" r="10" fill={`url(#${ids.accent})`} />
+          <rect x="154" y="140" width="18" height="36" rx="9" fill={`url(#${ids.body})`} />
+          <circle cx="163" cy="178" r="10" fill={`url(#${ids.accent})`} />
           {/* tiny laptop on lap */}
           <rect x="58" y="176" width="84" height="8" rx="2" fill="#131B44" />
           <rect x="62" y="160" width="76" height="18" rx="2" fill="#131B44" />
@@ -220,10 +235,10 @@ export function EzuppMascot({
       ) : (
         // default
         <>
-          <rect x="28" y="138" width="18" height="40" rx="9" fill="url(#mascotBody)" />
-          <circle cx="37" cy="180" r="11" fill="url(#mascotAccent)" />
-          <rect x="154" y="138" width="18" height="40" rx="9" fill="url(#mascotBody)" />
-          <circle cx="163" cy="180" r="11" fill="url(#mascotAccent)" />
+          <rect x="28" y="138" width="18" height="40" rx="9" fill={`url(#${ids.body})`} />
+          <circle cx="37" cy="180" r="11" fill={`url(#${ids.accent})`} />
+          <rect x="154" y="138" width="18" height="40" rx="9" fill={`url(#${ids.body})`} />
+          <circle cx="163" cy="180" r="11" fill={`url(#${ids.accent})`} />
         </>
       )}
 

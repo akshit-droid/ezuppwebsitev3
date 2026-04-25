@@ -52,6 +52,12 @@ const config: Config = {
         shimmer: "shimmer 2.4s linear infinite",
         marquee: "marquee 30s linear infinite",
         wave: "wave 2.5s ease-in-out infinite",
+        "word-swap": "wordSwap 0.55s cubic-bezier(0.22, 1, 0.36, 1) both",
+        "slide-up": "slideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both",
+        "scale-in": "scaleIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) both",
+        "fade-in": "fadeIn 0.25s ease-out both",
+        "scan-ray": "scanRay 2.4s ease-in-out infinite",
+        "float-soft": "floatSoft 3.5s ease-in-out infinite",
       },
       keyframes: {
         float: {
@@ -82,6 +88,33 @@ const config: Config = {
           "0%, 100%": { transform: "rotate(0deg)" },
           "25%": { transform: "rotate(12deg)" },
           "75%": { transform: "rotate(-8deg)" },
+        },
+        wordSwap: {
+          "0%": { opacity: "0", transform: "translateY(16px) scale(.95)" },
+          "100%": { opacity: "1", transform: "translateY(0) scale(1)" },
+        },
+        slideUp: {
+          "0%": { opacity: "0", transform: "translateY(24px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        scaleIn: {
+          "0%": { opacity: "0", transform: "scale(.9)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        scanRay: {
+          "0%": { transform: "translateY(0)", opacity: "0" },
+          "10%": { opacity: "1" },
+          "50%": { transform: "translateY(120%)", opacity: "1" },
+          "60%": { opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "0" },
+        },
+        floatSoft: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-6px)" },
         },
       },
     },

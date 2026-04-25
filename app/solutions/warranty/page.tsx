@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SolutionPage } from "@/components/solution/SolutionPage";
 import { WarrantyGraphic } from "@/components/solution/SolutionGraphics";
+import { WarrantyShowcase } from "@/components/solution/WarrantyShowcase";
 
 export const metadata: Metadata = {
   title: "Digital Warranty Activation · QR Registration & Authentication | Ezupp",
@@ -86,6 +87,9 @@ export default function WarrantyPage() {
           desc: "The warranty is active. You now have a verified channel to send support, offers, and survey pings.",
         },
       ]}
-    />
+    >
+      {/* Rich product showcase — scan tile + WhatsApp chat + certificate + insights */}
+      <WarrantyShowcase />
+    </SolutionPage>
   );
 }
