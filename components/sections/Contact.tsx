@@ -78,7 +78,7 @@ export function Contact() {
 
             <div className="mt-10 space-y-6">
               {[
-                { k: "📧", v: "hello@electrovese.com", l: "mailto:hello@electrovese.com", s: "Email" },
+                { k: "📧", v: "hello@ezupp.com", l: "mailto:hello@ezupp.com", s: "Email" },
                 { k: "📞", v: "+91 9805798997", l: "tel:+919805798997", s: "Call or WhatsApp" },
                 { 
                   k: "📍", 
