@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { Container } from "@/components/ui/Container";
 import { ArrowRightIcon, SparkleIcon } from "@/components/icons/SolutionIcons";
 import HeroSceneDynamic from "@/components/three/HeroSceneDynamic";
@@ -79,11 +78,6 @@ export function Hero() {
             the page reads like a normal hero, the 3D block sits between the
             headline and the description, then CTAs + stats below. */}
         <div className="relative">
-          <div className="reveal">
-            <SectionEyebrow>
-              One-Stop Enterprise Platform · By Electrovese Solutions
-            </SectionEyebrow>
-          </div>
 
           <h1 className="reveal d1 mt-4 text-[clamp(34px,8.6vw,76px)] font-extrabold leading-[1.04] tracking-[-0.03em] text-brand-navy md:mt-6">
             One Platform.
