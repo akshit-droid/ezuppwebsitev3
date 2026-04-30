@@ -366,7 +366,7 @@ export function ChatWidget() {
         </span>
         <span className="flex flex-col items-start text-left leading-tight">
           <span className="text-[10px] font-extrabold uppercase tracking-wider text-white/85">
-            Chat with
+            Hi, I&apos;m
           </span>
           <span className="text-[13px] font-extrabold text-white">Ezzy</span>
         </span>

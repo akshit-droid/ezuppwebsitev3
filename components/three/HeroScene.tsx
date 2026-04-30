@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { Billboard, Html, Sparkles } from "@react-three/drei";
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { MODULE_ICONS } from "./ModuleIcons";
 
@@ -178,6 +178,7 @@ function ModuleNode({
 }) {
   const groupRef = useRef<THREE.Group>(null);
   const bobRef = useRef<THREE.Group>(null);
+  const labelRef = useRef<HTMLDivElement>(null);
   const isTeal = node.color === "#2ED8A0";
   const Icon = MODULE_ICONS[node.label];
 
@@ -199,6 +200,11 @@ function ModuleNode({
         new THREE.Vector3(target, target, target),
         0.1,
       );
+      // hide label when node is behind the globe (z < 0 in world space = far side from camera)
+      if (labelRef.current) {
+        labelRef.current.style.opacity = worldPos.z < 0 ? "0" : "1";
+        labelRef.current.style.transition = "opacity 0.18s";
+      }
     }
     if (bobRef.current) {
       // gentle vertical bob
@@ -233,6 +239,7 @@ function ModuleNode({
           style={{ pointerEvents: "none", userSelect: "none" }}
         >
           <div
+            ref={labelRef}
             style={{
               padding: "4px 10px",
               borderRadius: 999,

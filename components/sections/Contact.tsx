@@ -78,11 +78,11 @@ export function Contact() {
 
             <div className="mt-10 space-y-6">
               {[
-                { k: "📧", v: "aadhar@electrovese.com", l: "mailto:aadhar@electrovese.com", s: "Email" },
-                { k: "📞", v: "+91 86993 35553", l: "tel:+918699335553", s: "Call or WhatsApp" },
+                { k: "📧", v: "hello@electrovese.com", l: "mailto:hello@electrovese.com", s: "Email" },
+                { k: "📞", v: "+91 9805798997", l: "tel:+919805798997", s: "Call or WhatsApp" },
                 { 
                   k: "📍", 
-                  v: "Electrovese Solutions, Industrial & Commercial Park, Industrial Area Phase I, Chandigarh, 160002", 
+                  v: "Mohali, India", 
                   l: "https://electrovese.com/", 
                   s: "Headquarters" 
                 },

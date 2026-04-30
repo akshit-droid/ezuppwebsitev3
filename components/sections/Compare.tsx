@@ -72,7 +72,7 @@ const COMPETITORS: Competitor[] = [
       "Indian-origin and GST-aware out of the box",
     ],
     limitations: [
-      "Apps feel unified but data still sits in 50 silos underneath",
+      "Apps feel unified but data still sits in 50 disconnected buckets underneath",
       "Distribution, secondary sales, loyalty need Creator + Flow stitching",
       "Zia AI is bolted on, not woven into every workflow",
       "No deep ERP master data — Channel · Segment · Division · Plants",

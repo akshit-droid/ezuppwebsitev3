@@ -2,7 +2,7 @@
   "name": "ezupp-website",
   "version": "1.0.0",
   "private": true,
-  "description": "Ezupp — One Platform. Every Business Need. Enterprise website by Electrovese Solutions.",
+  "description": "Ezupp — One Platform. Every Business Needs. Enterprise website by Electrovese Solutions.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

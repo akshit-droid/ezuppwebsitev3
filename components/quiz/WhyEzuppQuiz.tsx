@@ -84,13 +84,13 @@ const QUESTIONS: Question[] = [
     hint: "Be honest — we'll tailor the recommendation.",
     options: [
       {
-        label: "Data lives in silos — nothing talks",
+        label: "Data scattered everywhere — nothing connects",
         emoji: "🧩",
         score: 22,
         tags: ["ai", "crm"],
       },
       {
-        label: "Field team visibility is a black box",
+        label: "Field team activity is completely invisible",
         emoji: "🕳️",
         score: 20,
         tags: ["fleet", "distributor"],

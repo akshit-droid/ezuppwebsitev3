@@ -12,7 +12,7 @@ const jakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "Ezupp — One Platform. Every Business Need.",
+    default: "Ezupp — One Platform. Every Business Needs.",
     template: "%s · Ezupp",
   },
   description:
@@ -33,22 +33,22 @@ export const metadata: Metadata = {
     shortcut: "/assets/favicon.png",
   },
   openGraph: {
-    title: "Ezupp — One Platform. Every Business Need.",
+    title: "Ezupp — One Platform. Every Business Needs.",
     description:
-      "ERP, CRM, On-Demand, and WhatsApp Automation — unified. Built for enterprises that can't afford silos.",
+      "ERP, CRM, On-Demand, and WhatsApp Automation — unified. Built for enterprises that can't afford disconnected systems.",
     type: "website",
     images: [
       {
         url: "/assets/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Ezupp — One Platform. Every Business Need.",
+        alt: "Ezupp — One Platform. Every Business Needs.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ezupp — One Platform. Every Business Need.",
+    title: "Ezupp — One Platform. Every Business Needs.",
     images: ["/assets/og-image.png"],
   },
 };

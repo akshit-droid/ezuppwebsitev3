@@ -90,7 +90,7 @@ export function Hero() {
             <br />
             <span className="grad-text">Every Business</span>
             <br />
-            Need.
+            Needs.
           </h1>
 
           {/* ----------------------------------------------------------- *
@@ -143,7 +143,7 @@ export function Hero() {
           <p className="reveal d2 mt-5 max-w-[480px] text-[15px] leading-[1.65] text-brand-gray md:mt-6 md:text-[18px] md:leading-[1.72]">
             Ezupp unifies ERP, CRM, On-Demand operations, and WhatsApp
             Automation — a single intelligent layer for enterprise teams that
-            refuse to operate in silos.
+            refuse to operate in fragments.
           </p>
 
           <div className="reveal d3 mt-6 flex flex-wrap items-center gap-2.5 md:mt-8 md:gap-3">

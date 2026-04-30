@@ -94,7 +94,7 @@ export function About() {
             <SectionEyebrow>About Ezupp</SectionEyebrow>
             <h2 className="mt-5 text-[clamp(30px,3.6vw,48px)] font-extrabold leading-[1.1] tracking-[-0.03em] text-brand-navy">
               Built for enterprises that can&apos;t afford{" "}
-              <span className="grad-text">silos.</span>
+              <span className="grad-text">disconnected systems.</span>
             </h2>
 
             <p className="mt-6 text-[16px] leading-[1.78] text-brand-gray">
