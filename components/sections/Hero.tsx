@@ -84,7 +84,7 @@ export function Hero() {
             <br />
             <span className="grad-text">Every Business</span>
             <br />
-            Needs.
+            Need.
           </h1>
 
           {/* ----------------------------------------------------------- *
