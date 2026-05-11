@@ -4,14 +4,14 @@ import { HomeShell } from "@/components/sections/HomeShell";
 export const metadata: Metadata = {
   title: { absolute: "Ezupp — One Platform. Every Business Need." },
   description:
-    "Not exposed separately in the crawl; the route rendered the shared homepage shell.",
+    "Pipeline management, smart qualification, appointments, route optimisation & sequences — Ezupp Smart CRM for end-to-end sales motion.",
   alternates: {
     canonical: "https://ezupp.com/solutions/crm-sales-support",
   },
   openGraph: {
     title: "Ezupp — One Platform. Every Business Need.",
     description:
-      "Not exposed separately in the crawl; the route rendered the shared homepage shell.",
+      "Pipeline management, smart qualification, appointments, route optimisation & sequences — Ezupp Smart CRM for end-to-end sales motion.",
     url: "https://ezupp.com/solutions/crm-sales-support",
     type: "website",
   },
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ezupp — One Platform. Every Business Need.",
     description:
-      "Not exposed separately in the crawl; the route rendered the shared homepage shell.",
+      "Pipeline management, smart qualification, appointments, route optimisation & sequences — Ezupp Smart CRM for end-to-end sales motion.",
   },
 };
 

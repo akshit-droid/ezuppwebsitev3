@@ -4,14 +4,14 @@ import { HomeShell } from "@/components/sections/HomeShell";
 export const metadata: Metadata = {
   title: { absolute: "Ezupp — One Platform. Every Business Need." },
   description:
-    "Not exposed separately in the crawl; the route rendered the shared homepage shell.",
+    "Track field reps live, optimise routes with AI, and manage targets — Ezupp Sales Fleet runs your entire on-ground sales force from one app.",
   alternates: {
     canonical: "https://ezupp.com/solutions/sales-fleet",
   },
   openGraph: {
     title: "Ezupp — One Platform. Every Business Need.",
     description:
-      "Not exposed separately in the crawl; the route rendered the shared homepage shell.",
+      "Track field reps live, optimise routes with AI, and manage targets — Ezupp Sales Fleet runs your entire on-ground sales force from one app.",
     url: "https://ezupp.com/solutions/sales-fleet",
     type: "website",
   },
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ezupp — One Platform. Every Business Need.",
     description:
-      "Not exposed separately in the crawl; the route rendered the shared homepage shell.",
+      "Track field reps live, optimise routes with AI, and manage targets — Ezupp Sales Fleet runs your entire on-ground sales force from one app.",
   },
 };
 
