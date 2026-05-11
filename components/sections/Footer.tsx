@@ -17,19 +17,19 @@ const groups: FooterGroup[] = [
   {
     title: "Solutions",
     links: [
-      { label: "Sales Fleet", href: "/solutions/fleet" },
-      { label: "Distributor Mgmt", href: "/solutions/distributor" },
-      { label: "Supply Chain", href: "/solutions/supply" },
-      { label: "Loyalty Mgmt", href: "/solutions/loyalty" },
-      { label: "AI Ecosystem", href: "/solutions/ai" },
+      { label: "Sales Fleet", href: "/solutions/sales-fleet" },
+      { label: "Distributor Mgmt", href: "/solutions/distributor_app" },
+      { label: "Supply Chain", href: "/solutions/supply-chain" },
+      { label: "Loyalty Mgmt", href: "/solutions/loyalty-app" },
+      { label: "AI Ecosystem", href: "/solutions/enterprise-ai" },
     ],
   },
   {
     title: "Platform",
     links: [
-      { label: "Smart CRM", href: "/solutions/crm" },
+      { label: "Smart CRM", href: "/solutions/crm-sales-support" },
       { label: "HRMS (Skytech)", href: "https://www.skytechhr.com/", external: true },
-      { label: "Digital Warranty", href: "/solutions/warranty" },
+      { label: "Digital Warranty", href: "/solutions/digital-warranty" },
       { label: "WhatsApp Solution", href: "/solutions/whatsapp" },
       { label: "Integrations", href: "/#integrations" },
     ],

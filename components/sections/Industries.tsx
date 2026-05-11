@@ -28,7 +28,7 @@ const industries: Industry[] = [
     useCase:
       "Replace paper warranty cards with unique QR codes on every box. Customers scan to activate, verifying authenticity instantly while you capture first-party consumer data directly via WhatsApp.",
     primaryModule: "Digital Warranty",
-    primaryHref: "/solutions/warranty",
+    primaryHref: "/solutions/digital-warranty",
     accent: "blue",
     stats: [
       { value: "+68%", label: "Activation rate" },
@@ -47,7 +47,7 @@ const industries: Industry[] = [
     useCase:
       "Orchestrate complex secondary sales networks. Sync real-time inventory from 10,000+ distributors and run retailer loyalty programs that reward performance with automated payouts.",
     primaryModule: "Distributor Mgmt",
-    primaryHref: "/solutions/distributor",
+    primaryHref: "/solutions/distributor_app",
     accent: "teal",
     stats: [
       { value: "10k+", label: "Distributors live" },
@@ -66,7 +66,7 @@ const industries: Industry[] = [
     useCase:
       "Connect the shop floor to the field. Monitor fleet movements, optimize last-mile delivery routes, and manage your entire workforce's statutory compliance in one unified system.",
     primaryModule: "Supply Chain",
-    primaryHref: "/solutions/supply",
+    primaryHref: "/solutions/supply-chain",
     accent: "blue",
     stats: [
       { value: "−22%", label: "Logistics cost" },
@@ -123,7 +123,7 @@ const industries: Industry[] = [
     useCase:
       "Run a modern fleet ops room. Route optimization, proof-of-delivery capture, driver attendance, and live customer ETAs — every kilometre accounted for.",
     primaryModule: "Sales Fleet",
-    primaryHref: "/solutions/fleet",
+    primaryHref: "/solutions/sales-fleet",
     accent: "teal",
     stats: [
       { value: "−28%", label: "Route time" },

@@ -34,7 +34,7 @@ export const solutions: Solution[] = [
     desc: "Real-time tracking, route optimization, and performance dashboards for your entire field sales force.",
     accent: "blue",
     Icon: FleetIcon,
-    href: "/solutions/fleet",
+    href: "/solutions/sales-fleet",
   },
   {
     id: "distributor",
@@ -43,7 +43,7 @@ export const solutions: Solution[] = [
     desc: "Full visibility across your distributor network — orders, inventory, settlements, and secondary sales.",
     accent: "teal",
     Icon: DistributorIcon,
-    href: "/solutions/distributor",
+    href: "/solutions/distributor_app",
   },
   {
     id: "supply",
@@ -52,7 +52,7 @@ export const solutions: Solution[] = [
     desc: "Streamline procurement, warehousing, and last-mile delivery with intelligent workflow automation.",
     accent: "blue",
     Icon: SupplyIcon,
-    href: "/solutions/supply",
+    href: "/solutions/supply-chain",
   },
   {
     id: "loyalty",
@@ -61,7 +61,7 @@ export const solutions: Solution[] = [
     desc: "QR warranty activation plus tiered rewards across primary, secondary and tertiary sales — all in one program.",
     accent: "teal",
     Icon: LoyaltyIcon,
-    href: "/solutions/loyalty",
+    href: "/solutions/loyalty-app",
   },
   {
     id: "ai",
@@ -70,7 +70,7 @@ export const solutions: Solution[] = [
     desc: "Lead qualification, call analysis, intelligent routing, and route-optimised appointments — layered across ERP and CRM.",
     accent: "blue",
     Icon: AIIcon,
-    href: "/solutions/ai",
+    href: "/solutions/enterprise-ai",
   },
   {
     id: "hrms",
@@ -89,7 +89,7 @@ export const solutions: Solution[] = [
     desc: "Pipeline, qualification, appointments, agent & customer apps, route planning, event sequences, and email.",
     accent: "teal",
     Icon: CRMIcon,
-    href: "/solutions/crm",
+    href: "/solutions/crm-sales-support",
   },
   {
     id: "warranty",
@@ -98,7 +98,7 @@ export const solutions: Solution[] = [
     desc: "Seamless QR-based activation, product authentication, and claim management for a modern post-purchase experience.",
     accent: "blue",
     Icon: WarrantyIcon,
-    href: "/solutions/warranty",
+    href: "/solutions/digital-warranty",
   },
   {
     id: "whatsapp",
