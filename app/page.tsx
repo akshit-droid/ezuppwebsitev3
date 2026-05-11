@@ -1,20 +1,5 @@
 import type { Metadata } from "next";
-import { Navbar } from "@/components/sections/Navbar";
-import { Hero } from "@/components/sections/Hero";
-import { Marquee } from "@/components/sections/Marquee";
-import { Solutions } from "@/components/sections/Solutions";
-import { Industries } from "@/components/sections/Industries";
-import { Stats } from "@/components/sections/Stats";
-import { About } from "@/components/sections/About";
-import { Integrations } from "@/components/sections/Integrations";
-import { Compare } from "@/components/sections/Compare";
-import { Testimonials } from "@/components/sections/Testimonials";
-import { FAQ } from "@/components/sections/FAQ";
-import { Contact } from "@/components/sections/Contact";
-import { Footer } from "@/components/sections/Footer";
-import { RevealProvider } from "@/components/ui/Reveal";
-import { ChatWidget } from "@/components/chat/ChatWidget";
-import { WhyEzuppQuiz } from "@/components/quiz/WhyEzuppQuiz";
+import { HomeShell } from "@/components/sections/HomeShell";
 
 export const metadata: Metadata = {
   title: {
@@ -41,25 +26,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return (
-    <RevealProvider>
-      <Navbar />
-      <main>
-        <Hero />
-        <Marquee />
-        <Solutions />
-        <Industries />
-        <Stats />
-        <About />
-        <Integrations />
-        <Compare />
-        <Testimonials />
-        <FAQ />
-        <Contact />
-      </main>
-      <Footer />
-      <ChatWidget />
-      <WhyEzuppQuiz />
-    </RevealProvider>
-  );
+  return <HomeShell />;
 }
